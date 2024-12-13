@@ -24,11 +24,13 @@ mkdir -p $HOME/.pellcored/cosmovisor/genesis/bin/
 mkdir -p $HOME/.pellcored/cosmovisor/upgrades/v1.0.20/bin
 ```
 ```
+rm -rf ./pellcored-v1.0.0-linux-amd64
 wget https://github.com/0xPellNetwork/network-config/releases/download/v1.0.0-ignite-186-genesis/pellcored-v1.0.0-linux-amd64
 chmod +x ./pellcored-v1.0.0-linux-amd64
 sudo mv ./pellcored-v1.0.0-linux-amd64 /root/.pellcored/cosmovisor/genesis/bin/pellcored
 ```
 ```
+rm -rf ./pellcored-v1.0.20-linux-amd64
 wget https://github.com/0xPellNetwork/network-config/releases/download/v1.0.20-ignite/pellcored-v1.0.20-linux-amd64
 chmod +x ./pellcored-v1.0.20-linux-amd64
 sudo mv ./pellcored-v1.0.20-linux-amd64 /root/.pellcored/cosmovisor/upgrades/v1.0.20/bin/pellcored
@@ -40,6 +42,8 @@ sudo ln -sfn $HOME/.pellcored/cosmovisor/current/bin/pellcored /usr/local/bin/pe
 ```
 mkdir -p /root/.pellcored/lib
 wget "https://github.com/CosmWasm/wasmvm/releases/download/v2.1.2/libwasmvm.$(uname -m).so" -O "/root/.pellcored/lib/libwasmvm.$(uname -m).so"
+echo 'export LD_LIBRARY_PATH=/root/.pellcored/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
+source ~/.bashrc
 ```
 ```
 sudo tee /etc/systemd/system/pellcored.service > /dev/null <<EOF
@@ -57,6 +61,7 @@ Environment="DAEMON_HOME=/root/.pellcored"
 Environment="DAEMON_NAME=pellcored"
 Environment="UNSAFE_SKIP_BACKUP=true"
 Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/root/.pellcored/cosmovisor/current/bin"
+Environment="LD_LIBRARY_PATH=/root/.pellcored/lib:$LD_LIBRARY_PATH"
 
 [Install]
 WantedBy=multi-user.target
@@ -73,15 +78,18 @@ sudo systemctl daemon-reload
 sudo systemctl enable pellcored
 ```
 ```
+rm -rf /root/.pellcored/config/app.toml
 wget https://raw.githubusercontent.com/0xPellNetwork/network-config/refs/heads/main/testnet/app.toml -O /root/.pellcored/config/app.toml
 ```
 ```
+rm -rf /root/.pellcored/config/config.toml
 wget https://raw.githubusercontent.com/0xPellNetwork/network-config/refs/heads/main/testnet/config.toml -O /root/.pellcored/config/config.toml
 ```
 ```
 sed -i 's/^moniker = .*/moniker = "MictoNode"/' /root/.pellcored/config/config.toml
 ```
 ```
+rm -rf /root/.pellcored/config/genesis.json
 wget https://raw.githubusercontent.com/0xPellNetwork/network-config/refs/heads/main/testnet/genesis.json -O /root/.pellcored/config/genesis.json
 ```
 ```
@@ -123,6 +131,9 @@ fi
 ```
 sudo systemctl restart pellcored
 journalctl -fu pellcored -o cat
+```
+```
+pellcored keys add mictowallet --keyring-backend=test
 ```
 ```
 pellcored keys add mictowallet --recover --keyring-backend=test
