@@ -73,6 +73,18 @@ sudo systemctl daemon-reload
 sudo systemctl enable pellcored
 ```
 ```
+wget https://raw.githubusercontent.com/0xPellNetwork/network-config/refs/heads/main/testnet/app.toml -O /root/.pellcored/config/app.toml
+```
+```
+wget https://raw.githubusercontent.com/0xPellNetwork/network-config/refs/heads/main/testnet/config.toml -O /root/.pellcored/config/config.toml
+```
+```
+sed -i 's/^moniker = .*/moniker = "MictoNode"/' /root/.pellcored/config/config.toml
+```
+```
+wget https://raw.githubusercontent.com/0xPellNetwork/network-config/refs/heads/main/testnet/genesis.json -O /root/.pellcored/config/genesis.json
+```
+```
 sed -i.bak -e "s%:1317%:${PELL_PORT}317%g;
 s%:8080%:${PELL_PORT}080%g;
 s%:9090%:${PELL_PORT}090%g;
