@@ -16,7 +16,7 @@ version = "0.38.12"
 
 # TCP or UNIX socket address of the ABCI application,
 # or the name of an ABCI application compiled in with the CometBFT binary
-proxy_app = "tcp://127.0.0.1:57658"
+proxy_app = "tcp://0.0.0.0:57658"
 
 # A custom human readable name for this node
 moniker = "MictoNode"
@@ -207,14 +207,14 @@ laddr = "tcp://0.0.0.0:57656"
 
 # Address to advertise to peers for them to dial. If empty, will use the same
 # port as the laddr, and will introspect on the listener to figure out the
-# address. IP and port are required. Example: 159.89.10.97:26656
+# address. IP and port are required. Example: 159.89.10.97:57656
 external_address = "193.34.212.80:57656"
 
 # Comma separated list of seed nodes to connect to
-seeds = "d52c32a6a8510bdf0d33909008041b96d95c8408@34.87.39.12:26656,9b955d07f05b02b3d622f9cb7a0e6cfecd719985@34.87.47.193:26656"
+seeds = "d52c32a6a8510bdf0d33909008041b96d95c8408@34.87.39.12:57656,9b955d07f05b02b3d622f9cb7a0e6cfecd719985@34.87.47.193:57656"
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = "d52c32a6a8510bdf0d33909008041b96d95c8408@34.87.39.12:26656,9b955d07f05b02b3d622f9cb7a0e6cfecd719985@34.87.47.193:26656"
+persistent_peers = "6f204d45ddb4749fb1d265ab359ff2a6ff29ad29@10.84.1.148:26656,9b955d07f05b02b3d622f9cb7a0e6cfecd719985@34.87.47.193:26656,1d3fe72a84c15b4217722304ab162d44d4720bea@10.84.0.70:26656,2e386817d414c4b91f9b2f19cf19ce205d343c81@10.148.0.47:26656,c2bb903f085b74dd0742a51d5d736f0502b844bc@10.148.0.52:26656,28c0fcd184c31ac7f3e2b3a91ae60dedc086b0c3@94.130.204.227:26656,48c48532950e51fba80a1031d5a58c627737ed84@65.109.82.111:25656,3d231585b8f737d507208e2f2122f24e53aefdb3@10.148.15.199:26656,31853c271baa99f36eab7cdb1071d4fb5cba4ffc@10.148.15.202:26656,0b871f15d2f3047f87fdeaed39b30f9ab1f0599c@10.148.0.58:56656,420793a7ceecb8a656b881af566f460446397942@217.86.243.84:26656,c8739dfe6da741429c8ecdac27aab3afc1ee1ed2@16.62.152.77:26656,969e6b8df14860c3f5176cba6af317e3666f721d@82.223.17.254:26656,677ec699d545d8d29aed0250f45c5690799c6ee8@37.60.237.51:26656,6764a6dd299715d814060514b125fc140cfb54c8@124.156.216.149:26656,0d2937c86387342c4c13cbef19b8766335750680@185.252.232.87:26656,67a2c7996352dac1d12e1ad0176ca36d06f53555@171.247.105.229:26656,f9decf3cb78d88581d6c3c14828cb906a75fd060@95.216.97.238:26656,103b755578215a240d2e70a4294643e35ecfd6fa@152.53.66.0:21656,be843b3784f43fd3425e9111a6884d05002bc705@10.148.15.197:26656,c9a5d341547e06441e30e07db289fc337ec36f79@152.53.87.97:26656,d1dd899a5174ee33c30a4cdf78a57d0e8a24e417@185.148.241.23:26656,3064968f093bbae72e3a44a9364f4e5d1b21c2c1@10.148.0.48:26656,1bcc2348282d98636bb73eff3fc39f5f06d4a3c2@65.109.53.24:58656,f7f1f3a9e1fdd42c3e597b3ff556f39c8edc5834@152.53.102.226:26656,407c7229a207a0c932a56ab3a979fc2312751390@162.19.240.7:28656,1c6bdf6076953167fbffb8e34454ffa14e2fc6df@151.115.77.175:26656,6acaeb73550facc3f8cc6f67134f7f5afed7f714@184.107.169.193:26656,ef5a3ea90b49ed74bf7a8a51be190a86cd306ef4@5.75.243.19:26656,12f81307f95329e905100e50e84a0ac051e97389@67.217.58.230:26656,7cc16ef8eea8fd6087d172192b784d6a8d36aa0b@207.180.204.107:26656,5dd008e07046b7aa4d83d6261c895a53d20bed6b@15.235.225.32:26656,5c714ab8ac83822d9d43d8fcc73396e3b0ecf0b8@37.27.132.125:26656"
 
 # Path to address book
 addr_book_file = "config/addrbook.json"
@@ -369,7 +369,7 @@ enable = false
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = "34.87.47.193:26657,34.87.47.193:26657"
+rpc_servers = "34.87.47.193:57657,34.87.47.193:57657"
 trust_height = 0
 trust_hash = ""
 trust_period = "168h0m0s"
@@ -469,7 +469,7 @@ discard_abci_responses = false
 # 		- When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
 #   3) "psql" - the indexer services backed by PostgreSQL.
 # When "kv" or "psql" is chosen "tx.height" and "tx.hash" will always be indexed.
-indexer = "null"
+indexer = "kv"
 
 # The PostgreSQL connection configuration, the connection format:
 #   postgresql://<user>:<password>@<host>:<port>/<db>?<opts>
@@ -483,10 +483,10 @@ psql-conn = ""
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = false
+prometheus = true
 
 # Address to listen for Prometheus collector(s) connections
-prometheus_listen_addr = ":57660"
+prometheus_listen_addr = "127.0.0.1:57660"
 
 # Maximum number of simultaneous connections.
 # If you want to accept a larger number than the default, make sure
