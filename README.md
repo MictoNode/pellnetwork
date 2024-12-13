@@ -85,12 +85,12 @@ sed -i 's/^moniker = .*/moniker = "MictoNode"/' /root/.pellcored/config/config.t
 wget https://raw.githubusercontent.com/0xPellNetwork/network-config/refs/heads/main/testnet/genesis.json -O /root/.pellcored/config/genesis.json
 ```
 ```
-sed -i.bak -e "s%:26658%:${PELL_PORT}58%g;
-s%:26657%:${PELL_PORT}57%g;
-s%:6060%:${PELL_PORT}60%g;
-s%:26656%:${PELL_PORT}56%g;
-s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${PELL_PORT}56\"%;
-s%:26660%:${PELL_PORT}61%g" $HOME/.pellcored/config/config.toml
+sed -i.bak -e "s%:26658%:${PELL_PORT}658%g;
+s%:26657%:${PELL_PORT}657%g;
+s%:6060%:${PELL_PORT}060%g;
+s%:26656%:${PELL_PORT}656%g;
+s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${PELL_PORT}656\"%;
+s%:26660%:${PELL_PORT}660%g" $HOME/.pellcored/config/config.toml
 ```
 ```
 sed -i.bak -e "s%:1317%:${PELL_PORT}317%g;
