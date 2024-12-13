@@ -65,7 +65,7 @@ EOF
 ```
 pellcored config set client chain-id ignite_186-1
 pellcored config set client keyring-backend test
-pellcored config set client node tcp://localhost:${PELL_PORT}57
+pellcored config set client node tcp://localhost:${PELL_PORT}657
 pellcored init "MictoNode" --chain-id ignite_186-1
 ```
 ```
