@@ -124,3 +124,6 @@ fi
 sudo systemctl restart pellcored
 journalctl -fu pellcored -o cat
 ```
+```
+pellcored keys add mictowallet --recover --keyring-backend=test
+```
